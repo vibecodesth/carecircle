@@ -1,0 +1,106 @@
+{
+  "projectName": "CareCircle",
+  "branchName": "main",
+  "description": "Coordinate Family Care, Together. Siblings coordinate schedules, medications, and expenses for aging parents.",
+  "techStack": ["Next.js 14", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL", "NextAuth"],
+  "userStories": [
+    {
+      "id": "CC-001",
+      "title": "Create Care Circle",
+      "description": "As a family caregiver, I can create a Care Circle and invite my siblings so we can coordinate care together.",
+      "priority": 1,
+      "passes": false,
+      "acceptanceCriteria": [
+        "Sign up with email + password or Google OAuth",
+        "Create Circle: name it (e.g. 'Mom's Care')",
+        "Invite members via email",
+        "Members join with invite link",
+        "Up to 10 members per circle"
+      ]
+    },
+    {
+      "id": "CC-002",
+      "title": "Parent Profile",
+      "description": "As a caregiver, I can set up my parent's profile with health info so everyone has context.",
+      "priority": 2,
+      "passes": false,
+      "acceptanceCriteria": [
+        "Parent name, age, address",
+        "Key health conditions (text list)",
+        "Primary doctor name/phone",
+        "Emergency contacts",
+        "All circle members can view"
+      ]
+    },
+    {
+      "id": "CC-003",
+      "title": "Care Schedule",
+      "description": "As a caregiver, I can create and claim care shifts so we know who's responsible when.",
+      "priority": 3,
+      "passes": false,
+      "acceptanceCriteria": [
+        "Create recurring or one-time shifts",
+        "Members claim available shifts",
+        "Visual weekly schedule view",
+        "Unclaimed shifts highlighted",
+        "Swap shift request between members"
+      ]
+    },
+    {
+      "id": "CC-004",
+      "title": "Medication Tracking",
+      "description": "As a caregiver, I can log medications and confirm they were given so nothing gets missed.",
+      "priority": 4,
+      "passes": false,
+      "acceptanceCriteria": [
+        "Add medication: name, dosage, frequency, time",
+        "Daily medication checklist",
+        "Confirm button: 'Given by [name] at [time]'",
+        "Missed medication alert",
+        "Medication history log"
+      ]
+    },
+    {
+      "id": "CC-005",
+      "title": "Medical Timeline",
+      "description": "As a caregiver, I can log medical events (doctor visits, hospitalizations) so we have a shared history.",
+      "priority": 5,
+      "passes": false,
+      "acceptanceCriteria": [
+        "Add event: date, type, doctor, notes",
+        "Types: doctor visit, ER, hospital, test, other",
+        "Chronological timeline view",
+        "Attach documents/photos (future)",
+        "All members can add and view"
+      ]
+    },
+    {
+      "id": "CC-006",
+      "title": "Expense Tracking & Splitting",
+      "description": "As a caregiver, I can log care expenses and split them fairly among siblings.",
+      "priority": 6,
+      "passes": false,
+      "acceptanceCriteria": [
+        "Add expense: amount, category, paid by, date",
+        "Categories: medical, supplies, food, transport, other",
+        "Auto-calculate fair split",
+        "Running balance: who owes whom",
+        "Monthly expense summary"
+      ]
+    },
+    {
+      "id": "CC-007",
+      "title": "Emergency Alerts",
+      "description": "As a caregiver, I can send an emergency alert to all circle members instantly.",
+      "priority": 7,
+      "passes": false,
+      "acceptanceCriteria": [
+        "One-tap emergency alert button",
+        "Push notification to all members",
+        "Include location and message",
+        "Alert history log",
+        "Acknowledge/respond in-app"
+      ]
+    }
+  ]
+}
