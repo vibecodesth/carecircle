@@ -1,18 +1,55 @@
 'use client';
 
-import { useState } from 'react';
+import { Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
+
+function WaitlistSection() {
+  const searchParams = useSearchParams();
+  const showThanks = searchParams.get('thanks');
+
+  return (
+    <section className="bg-emerald-600 text-white py-16 md:py-24">
+      <div className="container mx-auto px-4">
+        <div className="max-w-2xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            Join the Waitlist
+          </h2>
+          <p className="text-xl text-emerald-100 mb-8">
+            Be the first to know when CareCircle launches. We're building something special.
+          </p>
+          {showThanks ? (
+            <div className="bg-emerald-700 p-6 rounded-lg max-w-md mx-auto">
+              <p className="text-xl font-medium">✓ You&apos;re on the list!</p>
+              <p className="text-emerald-100 mt-2">We&apos;ll be in touch soon.</p>
+            </div>
+          ) : (
+            <form action="https://formsubmit.co/akisato888@gmail.com" method="POST" className="flex flex-col md:flex-row gap-4 max-w-md mx-auto">
+              <input type="hidden" name="_subject" value="🚀 Waitlist Signup - CareCircle" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_next" value="https://carecircle-gray.vercel.app/?thanks=1" />
+              <input type="hidden" name="product" value="carecircle" />
+              <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+                className="flex-1 px-6 py-4 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-emerald-300"
+              />
+              <button
+                type="submit"
+                className="px-8 py-4 bg-white text-emerald-600 rounded-lg font-medium hover:bg-emerald-50 transition whitespace-nowrap"
+              >
+                Join Waitlist
+              </button>
+            </form>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export default function Home() {
-  const [email, setEmail] = useState('');
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-    // In production, this would send to your backend
-    console.log('Waitlist signup:', email);
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
       {/* Header */}
@@ -298,41 +335,18 @@ export default function Home() {
       </section>
 
       {/* Waitlist Signup */}
-      <section className="bg-emerald-600 text-white py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Join the Waitlist
-            </h2>
-            <p className="text-xl text-emerald-100 mb-8">
-              Be the first to know when CareCircle launches. We're building something special.
-            </p>
-            {!submitted ? (
-              <form onSubmit={handleSubmit} className="flex flex-col md:flex-row gap-4 max-w-md mx-auto">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email"
-                  required
-                  className="flex-1 px-6 py-4 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-emerald-300"
-                />
-                <button
-                  type="submit"
-                  className="px-8 py-4 bg-white text-emerald-600 rounded-lg font-medium hover:bg-emerald-50 transition whitespace-nowrap"
-                >
-                  Join Waitlist
-                </button>
-              </form>
-            ) : (
-              <div className="bg-emerald-700 p-6 rounded-lg max-w-md mx-auto">
-                <p className="text-xl font-medium">✓ You're on the list!</p>
-                <p className="text-emerald-100 mt-2">We'll be in touch soon.</p>
-              </div>
-            )}
+      <Suspense fallback={
+        <section className="bg-emerald-600 text-white py-16 md:py-24">
+          <div className="container mx-auto px-4">
+            <div className="max-w-2xl mx-auto text-center">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">Join the Waitlist</h2>
+              <p className="text-xl text-emerald-100 mb-8">Loading...</p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      }>
+        <WaitlistSection />
+      </Suspense>
 
       {/* FAQ */}
       <section className="container mx-auto px-4 py-16 md:py-24">
